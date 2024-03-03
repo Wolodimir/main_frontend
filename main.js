@@ -1,6 +1,6 @@
 const button = document.querySelector('#button')
 const h1 = document.querySelector('h1')
-const url = ''
+const url = 'http://localhost:8080/ws'
 
 const socket = new SockJS(url)
 const stompClient = Stomp.over(socket)
@@ -12,29 +12,32 @@ stompClient.connect({}, () => {
 })
 
 
-socket.onopen = (event) => {
+stompClient.onopen = (event) => {
     console.log(`Соединение ${url} открыто`, event)
 }
 
-socket.onerror = (event) => {
+stompClient.onerror = (event) => {
     console.error('Ошибка: ', event)
 }
 
-socket.onmessage = (event) => {
+stompClient.onmessage = (event) => {
     console.log('Сообщение: ', event)
     h1.textContent = event.data
 }
 
-socket.onclose = (event) => {
+stompClient.onclose = (event) => {
     console.log(`Соединение ${url} закрыто`, event)
 }
 
 const data = {
-
+    health: 100,
+    stamina: 1984,
+    name: 'mda',
+    id: 1231313
 }
 
 button.onclick = () => {
     const str = JSON.stringify(data)
-    stompClient.send('', data)
+    stompClient.send('/backend/character.sendMessage', {}, str)
     console.log(str)
 }
