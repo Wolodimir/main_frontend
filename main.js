@@ -2,7 +2,15 @@ const button = document.querySelector('#button')
 const h1 = document.querySelector('h1')
 const url = ''
 
-const socket = new WebSocket(url)
+const socket = new SockJS(url)
+const stompClient = Stomp.over(socket)
+
+stompClient.connect({}, () => {
+    stompClient.subscribe('/topic/public', (payload) => {
+        console.log(payload)
+    });
+})
+
 
 socket.onopen = (event) => {
     console.log(`Соединение ${url} открыто`, event)
@@ -27,6 +35,6 @@ const data = {
 
 button.onclick = () => {
     const str = JSON.stringify(data)
-    socket.send(str)
+    stompClient.send('', data)
     console.log(str)
 }
