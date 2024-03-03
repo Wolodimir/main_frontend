@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>WebSocket</title>
+</head>
+<body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: "Roboto", sans-serif;
+    }
+
+    .container {
+        height: 100%;
+        display: grid;
+        place-content: center;
+        background-color: #9550ea;
+    }
+
+    #button {
+        padding: 8px 24px;
+        border-radius: 8px;
+        outline: none;
+        font-weight: 500;
+        font-size: 16px;
+        font-family: inherit;
+        border: 2px solid hsl(111, 50%, 35%);
+        background-color: #93ff80;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        user-select: none;
+        cursor: pointer;
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <button id="button">Отправить сообщение</button>
+    <h1>TEXT</h1>
+</div>
+<script src="./main.js"></script>
+</body>
+</html>
